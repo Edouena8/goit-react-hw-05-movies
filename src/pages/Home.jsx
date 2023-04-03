@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Home = () => {
-
+    const location = useLocation();
     const [films, setFilms] = useState([]);
 
     useEffect(() => {
@@ -21,7 +21,7 @@ const Home = () => {
                 {films.map((film) => {
                     return (
                         <li key={film.id}>
-                            <Link to={`movies/${film.id}`}>
+                            <Link to={`movies/${film.id}`} state={{from: location}}>
                                 <p>{film.title}</p>
                             </Link>
                         </li>

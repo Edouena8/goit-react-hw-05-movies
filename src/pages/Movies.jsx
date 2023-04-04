@@ -1,28 +1,39 @@
-import { useState, useEffect } from "react";
-import { Link, Outlet, useLocation, useSearchParams } from "react-router-dom";
+import { useState, useEffect, Suspense } from "react";
+import { Outlet, useLocation, useSearchParams } from "react-router-dom";
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { searchMovie } from "services/films-api";
+import SeaechForm from "components/SearchForm";
+import SearchMoviesList from "components/SearchMoviesList";
 
 const Movies = () => {
     const location = useLocation();
     const [films, setFilms] = useState([]);
+    const [error, setError] = useState(null);
     const [searchParams, setSearchParams] = useSearchParams();
     const filmTitle = searchParams.get('title' || '');
+    
     console.log(films);
     console.log(filmTitle)
 
     useEffect(() => {
         if(!filmTitle) return;
 
-        fetch(`https://api.themoviedb.org/3/search/movie?api_key=e7e8717bf37b2131c41f035d5b761556&language=en-US&page=1&include_adult=false&query=${filmTitle}`)
-        .then(res => res.json())
-        .then(({results}) => setFilms(results));
+        searchMovie(filmTitle)
+        .then(({results}) => {
+            if(!results.length) {
+                toast.error(`${filmTitle} not found`);
+                return;
+            }
+            
+            setFilms(results);
+        })
+        .catch(error => setError(error));
+            
 
     }, [filmTitle]);
 
-    // const onParamsChange = evt => {
-    //     setSearchParams({title: evt.target.value});
-    // }
-
-    const handleSubmit = e => {
+    const handleFormSubmit = e => {
         e.preventDefault();
         const form = e.currentTarget;
         setSearchParams({ title: form.elements.filmtitle.value });
@@ -36,30 +47,14 @@ const Movies = () => {
 
     return (
         <>
-            <div>
-                <form onSubmit={handleSubmit}>                   
-                    <input 
-                        type="text"
-                        name="filmtitle"
-                        // onChange={onParamsChange}
-                    />
-                    <button type="submit">Search</button>
-                </form>
-            </div>
-            <ul>
-                {films.map(film => {
-                    return (
-                        <li key={film.id}>
-                            <Link to={`${film.id}`} state={{ from: location}}>
-                                {film.original_title }
-                            </Link>
-                        </li>
-                    )
-                })}
-            </ul>
-            <Outlet/>
+            <SeaechForm handleFormSubmit={handleFormSubmit}/>
+            {films.length > 0 && <SearchMoviesList films={films} location={location}/>}
+            {error && <h2>{error.message}</h2>}
+            <Suspense fallback={<div>Loading...</div>}>
+                <Outlet/>
+            </Suspense>
         </>
-    )
+    );
 
 };
 

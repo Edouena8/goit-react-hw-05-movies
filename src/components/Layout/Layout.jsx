@@ -5,7 +5,6 @@ import Loader from "components/Loader";
 
 const Layout = () => {
     return (
-        // <Container>
         <>
         <Header>
             <Container>
@@ -27,7 +26,6 @@ const Layout = () => {
             </Section>
         </Main>
         </>
-        // </Container>
     )
 };
 

@@ -30,5 +30,7 @@ export const AddInfoList = styled.ul`
   gap: 50px;
   align-items: center;
   justify-content: center;
+  padding-bottom: 20px;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.3);
   margin-bottom: 40px;
 `;

@@ -1,5 +1,12 @@
+import PropTypes from "prop-types";
 import { FcSearch } from 'react-icons/fc';
-import { InputContainer, FormWrap, FormButton, ButtonLabel, FormInput } from "./SearchForm.styled";
+import { 
+    InputContainer, 
+    FormWrap, 
+    FormButton, 
+    ButtonLabel, 
+    FormInput 
+} from "./SearchForm.styled";
 
 const SeaechForm = ({handleFormSubmit}) => {
     return (
@@ -16,12 +23,15 @@ const SeaechForm = ({handleFormSubmit}) => {
                     autoComplete="off"
                     autoFocus
                     placeholder="Search movies"
-                    // onChange={onParamsChange}
                 />
                 
             </FormWrap>
         </InputContainer>
     )
 };
+
+SeaechForm.propTypes = {
+    handleFormSubmit: PropTypes.func.isRequired,
+}
 
 export default SeaechForm;

@@ -1,4 +1,10 @@
-import { ActorsWrap, ActorsItem, ActorsImg, ActorsName } from "./ActorsList.styled";
+import PropTypes from "prop-types";
+import { 
+    ActorsWrap, 
+    ActorsItem, 
+    ActorsImg, 
+    ActorsName 
+} from "./ActorsList.styled";
 
 const ActorsList = ({actors}) => {
     return (
@@ -17,5 +23,9 @@ const ActorsList = ({actors}) => {
         </>
     );
 };
+
+ActorsList.propTypes = {
+    actors: PropTypes.array.isRequired,
+}
 
 export default ActorsList;

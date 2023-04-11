@@ -1,4 +1,11 @@
-import { Container, TrendingTitle, TrendingList, TrendongItem, LinkTitle } from "./TrandingMovies.styled";
+import PropTypes from "prop-types";
+import { 
+    Container, 
+    TrendingTitle, 
+    TrendingList, 
+    TrendongItem, 
+    LinkTitle 
+} from "./TrandingMovies.styled";
 
 const TrandingMovies = ({films, location}) => {
     return (
@@ -18,6 +25,11 @@ const TrandingMovies = ({films, location}) => {
             </TrendingList>
         </Container>
     );
+};
+
+TrandingMovies.propTypes = {
+    films: PropTypes.array.isRequired,
+    location: PropTypes.object.isRequired,
 };
 
 export default TrandingMovies;

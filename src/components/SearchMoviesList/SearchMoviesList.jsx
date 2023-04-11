@@ -1,4 +1,10 @@
-import { Container, SearchList, SeatchItem, LinkTitle } from "./SearchMoviesList.styled";
+import PropTypes from "prop-types";
+import { 
+    Container, 
+    SearchList, 
+    SeatchItem, 
+    LinkTitle 
+} from "./SearchMoviesList.styled";
 
 const SearchMoviesList = ({films, location}) => {
    
@@ -18,6 +24,11 @@ const SearchMoviesList = ({films, location}) => {
             </SearchList>
         </Container>
     )
+};
+
+SearchMoviesList.propTypes = {
+    films: PropTypes.array.isRequired,
+    location: PropTypes.object.isRequired,
 };
 
 export default SearchMoviesList;

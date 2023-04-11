@@ -34,7 +34,7 @@ export const InfoWrap = styled.div`
 `;
 
 export const InfoBox = styled.div`
-    border-bottom: 1px solid #fff;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.3);
     margin-bottom: 50px;
 `
 

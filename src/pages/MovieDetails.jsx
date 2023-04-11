@@ -29,9 +29,6 @@ const MovieDetails = () => {
 
     return (
         <div>
-            {/* <div>
-                <Link to={backLinkLocationRef.current}>Go back</Link>
-            </div> */}
             {film && <MovieDetailsInfo film={film} backLinkLocationRef={backLinkLocationRef.current}/>} 
             {error && (
                 <h2 

@@ -4,8 +4,7 @@ import { NavLink } from "react-router-dom";
 export const Container = styled.div`
   max-width: 1230px;
   margin: 0 auto;
-  padding: 0 15px; 
-  // border-bottom: 1px solid #FFFFFF;  
+  padding: 0 15px;
   
   > ul {
     display: flex;
@@ -17,6 +16,7 @@ export const Container = styled.div`
 export const Header = styled.header`
   color: #FFFFFF;
   background-color: #000000;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
 `;
 
 export const Section = styled.div`

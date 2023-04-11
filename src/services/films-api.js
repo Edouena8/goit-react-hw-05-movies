@@ -48,7 +48,7 @@ export const getMovieDetails = (movieId) => {
         }
     
         return Promise.reject(
-            new Error('Not found')
+            new Error('Sorry, not found.')
         );
     });
 };

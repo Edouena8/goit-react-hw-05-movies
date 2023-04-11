@@ -1,23 +1,28 @@
+// import { Link } from "react-router-dom";
 import AdditionalInfo from "components/AdditionalInfo";
+import { Container, BackLink, InfoWrap, InfoBox, MovieTitle, Title, Info } from "./MovieDetailsInfo.styled";
 
-const MovieDetailsInfo = ({film}) => {
+const MovieDetailsInfo = ({film, backLinkLocationRef}) => {
     const {original_title, title, poster_path, vote_average, overview, genres} = film;
 
     return (
-        <div>
-            <div>
-                <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />
-            </div>
-            <div>
-                <h2>{original_title ? original_title : title}</h2>
-                <p>User Score: {Math.round(vote_average * 100 / 10)}%</p>
-                <h3>Overview</h3>
-                <p>{overview}</p>
-                <h3>Genres</h3>
-                <p>{genres.map(({name}) => name).join(' ')}</p>
-            </div>
+        <Container>
+            {/* <div> */}
+                <BackLink to={backLinkLocationRef}>Go back</BackLink>
+            {/* </div> */}
+            <InfoWrap>
+                <img src={`https://image.tmdb.org/t/p/w300${poster_path}`} alt={title} />
+                    <InfoBox>
+                        <MovieTitle>{original_title ? original_title : title}</MovieTitle>
+                        <Info>User Score: {Math.round(vote_average * 100 / 10)}%</Info>
+                        <Title>Overview</Title>
+                        <Info>{overview}</Info>
+                        <Title>Genres</Title>
+                        <Info>{genres.map(({name}) => name).join(' ')}</Info>
+                    </InfoBox>               
+            </InfoWrap>
             <AdditionalInfo/>
-        </div>
+        </Container>
     );
 };
 

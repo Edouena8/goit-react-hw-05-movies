@@ -1,18 +1,19 @@
 import {  Suspense } from "react";
-import { Link, Outlet} from "react-router-dom";
+import { Outlet} from "react-router-dom";
+import { AdditionalTilte, AddInfoList, AddInfoLink } from "./AdditionalInfo.styled";
 
 const AdditionalInfo = () => {
     return (
         <div>
-            <p>Additional information</p>
-            <ul>
+            <AdditionalTilte>Additional information</AdditionalTilte>
+            <AddInfoList>
                 <li>
-                    <Link to="cast">Cast</Link>
+                    <AddInfoLink to="cast">Cast</AddInfoLink>
                 </li>
                 <li>
-                    <Link to="reviews">Reviews</Link>
+                    <AddInfoLink to="reviews">Reviews</AddInfoLink>
                 </li>
-            </ul>
+            </AddInfoList>
             <Suspense fallback={<div>Loading...</div>}>
                 <Outlet/>
             </Suspense>

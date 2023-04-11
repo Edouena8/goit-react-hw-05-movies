@@ -8,6 +8,7 @@ const Home = () => {
     const [films, setFilms] = useState([]);
 
     useEffect(() => { 
+        
         getTrandingMovies()
         .then(resp => setFilms([...resp.results]));
     }, []);

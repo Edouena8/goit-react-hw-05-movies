@@ -1,22 +1,23 @@
-import { Link } from "react-router-dom";
+import { Container, TrendingTitle, TrendingList, TrendongItem, LinkTitle } from "./TrandingMovies.styled";
 
 const TrandingMovies = ({films, location}) => {
     return (
-        <div>
-            <h1>Tranding today</h1>
-            <ul>
-                {films.map(({id, title, original_title}) => {
+            <Container>
+            <TrendingTitle>Tranding today</TrendingTitle>
+            <TrendingList>
+                {films.map(({id, title, original_title, poster_path}) => {
                     return (
-                        <li key={id}>
-                            <Link to={`movies/${id}`} state={{from: location}}>
+                        <TrendongItem key={id}>
+                            <LinkTitle to={`movies/${id}`} state={{from: location}}>
+                                <img src={`https://image.tmdb.org/t/p/w200${poster_path}`} alt="" />
                                 <p>{original_title ? original_title : title}</p>
-                            </Link>
-                        </li>
+                            </LinkTitle>
+                        </TrendongItem>
                     );
                 })}
-            </ul>
-        </div>
-    )
+            </TrendingList>
+        </Container>
+    );
 };
 
 export default TrandingMovies;

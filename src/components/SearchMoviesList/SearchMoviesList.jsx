@@ -1,21 +1,22 @@
-import { Link } from "react-router-dom";
+import { Container, SearchList, SeatchItem, LinkTitle } from "./SearchMoviesList.styled";
 
 const SearchMoviesList = ({films, location}) => {
    
     return (
-        <>
-            <ul>
-                {films.map(({id, original_title, title}) => {
+        <Container>
+            <SearchList>
+                {films.map(({id, original_title, title, poster_path}) => {
                     return (
-                        <li key={id}>
-                            <Link to={`${id}`} state={{ from: location}}>
-                                {original_title ? original_title : title}
-                            </Link>
-                        </li>
+                        <SeatchItem key={id}>
+                            <LinkTitle to={`${id}`} state={{ from: location}}>
+                                <img src={`https://image.tmdb.org/t/p/w200${poster_path}`} alt="" />
+                                <p>{original_title ? original_title : title}</p>
+                            </LinkTitle>
+                        </SeatchItem>
                     )
                 })}
-            </ul>
-        </>
+            </SearchList>
+        </Container>
     )
 };
 

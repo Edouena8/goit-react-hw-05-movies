@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { searchMovie } from "services/films-api";
 import SeaechForm from "components/SearchForm";
 import SearchMoviesList from "components/SearchMoviesList";
+import Loader from "components/Loader";
 
 const Movies = () => {
     const location = useLocation();
@@ -13,8 +14,8 @@ const Movies = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const filmTitle = searchParams.get('title' || '');
     
-    console.log(films);
-    console.log(filmTitle)
+    // console.log(films);
+    // console.log(filmTitle)
 
     useEffect(() => {
         if(!filmTitle) return;
@@ -36,21 +37,22 @@ const Movies = () => {
     const handleFormSubmit = e => {
         e.preventDefault();
         const form = e.currentTarget;
-        setSearchParams({ title: form.elements.filmtitle.value });
-        form.reset();
-      };
+        const name = form.elements.filmtitle.value;
 
-    // const updateQueryString = (name) => {
-    //     const nextParams = name !== "" ? { name } : {};
-    //     setSearchParams(nextParams);
-    // };
+        if(name === '') {
+            toast.error(`Enter movie name`);
+        } else {
+            setSearchParams({ title: name })
+            form.reset();
+        }
+      };
 
     return (
         <>
-            <SeaechForm handleFormSubmit={handleFormSubmit}/>
+            <SeaechForm handleFormSubmit={handleFormSubmit} />
             {films.length > 0 && <SearchMoviesList films={films} location={location}/>}
             {error && <h2>{error.message}</h2>}
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loader/>}>
                 <Outlet/>
             </Suspense>
         </>

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import {  toast } from 'react-toastify';
 import { getMovieDetails } from "services/films-api";
 import MovieDetailsInfo from "components/MovieDetailsInfo/MovieDetailsInfo";
@@ -18,7 +18,7 @@ const MovieDetails = () => {
         .then(resp => {
 
             if(!resp) {
-                toast.error(`Not found`);
+                toast.error(`Sorry, not found`);
                 return;
             }
             setFilm(resp);
@@ -29,11 +29,19 @@ const MovieDetails = () => {
 
     return (
         <div>
-            <div>
+            {/* <div>
                 <Link to={backLinkLocationRef.current}>Go back</Link>
-            </div>
-            {film && <MovieDetailsInfo film={film}/>} 
-            {error && <h2>{error.message}</h2>}
+            </div> */}
+            {film && <MovieDetailsInfo film={film} backLinkLocationRef={backLinkLocationRef.current}/>} 
+            {error && (
+                <h2 
+                    style={{
+                        textAlign: 'center',
+                        color: 'white',
+                    }}>
+                        {error.message}
+                </h2>
+            )}
         </div>
     )
 }

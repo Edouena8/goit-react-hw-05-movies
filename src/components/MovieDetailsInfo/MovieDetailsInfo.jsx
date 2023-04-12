@@ -17,7 +17,13 @@ const MovieDetailsInfo = ({film, backLinkLocationRef}) => {
         <Container>
                 <BackLink to={backLinkLocationRef}>Go back</BackLink>           
             <InfoWrap>
-                <img src={`https://image.tmdb.org/t/p/w300${poster_path}`} alt={title} />
+                <img 
+                    src={
+                        poster_path
+                         ? `https://image.tmdb.org/t/p/w300${poster_path}`
+                         : `https://via.placeholder.com/300x450`
+                    } 
+                    alt={title} />
                     <InfoBox>
                         <MovieTitle>{original_title ? original_title : title}</MovieTitle>
                         <Info>User Score: {Math.round(vote_average * 100 / 10)}%</Info>

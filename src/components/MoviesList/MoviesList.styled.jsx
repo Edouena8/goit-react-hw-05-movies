@@ -7,7 +7,7 @@ export const Container = styled.div`
   padding: 0 15px; 
 `;
 
-export const SearchList = styled.ul`
+export const List = styled.ul`
   display: flex;
   gap: 30px;
   flex-wrap: wrap;
@@ -15,7 +15,7 @@ export const SearchList = styled.ul`
   text-align: center;
 `;
 
-export const SeatchItem = styled.li`
+export const Item = styled.li`
   width: 200px;
   -webkit-box-shadow: 0px 0px 0px 5px #A0A0A0, inset 0px 10px 27px -8px #141414, inset 0px -10px 27px -8px #A31925, 5px 5px 9px 5px rgba(0,0,0,0.03); 
   box-shadow: 0px 0px 0px 5px #A0A0A0, inset 0px 10px 27px -8px #141414, inset 0px -10px 27px -8px #A31925, 5px 5px 9px 5px rgba(0,0,0,0.03);

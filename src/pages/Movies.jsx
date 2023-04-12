@@ -4,7 +4,8 @@ import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { searchMovie } from "services/films-api";
 import SeaechForm from "components/SearchForm";
-import SearchMoviesList from "components/SearchMoviesList";
+// import SearchMoviesList from "components/SearchMoviesList";
+import MoviesList from "components/MoviesList";
 import Loader from "components/Loader";
 
 const Movies = () => {
@@ -39,7 +40,7 @@ const Movies = () => {
         const form = e.currentTarget;
         const name = form.elements.filmtitle.value;
 
-        if(name === '') {
+        if(name.trim() === '') {
             toast.error(`Enter movie name`);
         } else {
             setSearchParams({ title: name })
@@ -50,7 +51,7 @@ const Movies = () => {
     return (
         <>
             <SeaechForm handleFormSubmit={handleFormSubmit} />
-            {films.length > 0 && <SearchMoviesList films={films} location={location}/>}
+            {films.length > 0 && <MoviesList films={films} location={location}/>}
             {error && <h2>{error.message}</h2>}
             <Suspense fallback={<Loader/>}>
                 <Outlet/>

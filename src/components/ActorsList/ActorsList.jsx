@@ -13,7 +13,14 @@ const ActorsList = ({actors}) => {
                 {actors.map(({id, profile_path, name, character}) => {
                     return (
                         <ActorsItem key={id}>
-                            <ActorsImg src={`https://image.tmdb.org/t/p/w200${profile_path}`} alt="" />
+                            <ActorsImg 
+                                src={
+                                    profile_path
+                                    ? `https://image.tmdb.org/t/p/w200${profile_path}`
+                                    : `https://via.placeholder.com/200x300`
+                                } 
+                                alt="" 
+                            />
                             <ActorsName>{name}</ActorsName>
                             <p>{character}</p>
                         </ActorsItem>                       

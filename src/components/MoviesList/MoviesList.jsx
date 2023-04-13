@@ -1,7 +1,10 @@
 import PropTypes from "prop-types";
 import { Container, List, Item, LinkTitle } from "./MoviesList.styled";
+import { useLocation } from "react-router-dom";
 
-const MoviesList = ({films, location, linkTo}) => {
+const MoviesList = ({films}) => {
+
+    const location = useLocation();
    
     return (
         <Container>
@@ -9,7 +12,7 @@ const MoviesList = ({films, location, linkTo}) => {
                 {films.map(({id, original_title, title, poster_path}) => {
                     return (
                         <Item key={id}>
-                            <LinkTitle to={`${linkTo ?? ''}${id}`} state={{ from: location}}>
+                            <LinkTitle to={`/movies/${id}`} state={{ from: location}}>
                                 <img 
                                     src={
                                         poster_path
@@ -30,7 +33,6 @@ const MoviesList = ({films, location, linkTo}) => {
 
 MoviesList.propTypes = {
     films: PropTypes.array.isRequired,
-    location: PropTypes.object.isRequired,
 };
 
 export default MoviesList;

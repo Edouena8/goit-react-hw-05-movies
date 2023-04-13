@@ -1,22 +1,18 @@
 import { useState, useEffect, Suspense } from "react";
-import { Outlet, useLocation, useSearchParams } from "react-router-dom";
+import { Outlet,  useSearchParams } from "react-router-dom";
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { searchMovie } from "services/films-api";
 import SeaechForm from "components/SearchForm";
-// import SearchMoviesList from "components/SearchMoviesList";
 import MoviesList from "components/MoviesList";
 import Loader from "components/Loader";
 
 const Movies = () => {
-    const location = useLocation();
+    // const location = useLocation();
     const [films, setFilms] = useState([]);
     const [error, setError] = useState(null);
     const [searchParams, setSearchParams] = useSearchParams();
     const filmTitle = searchParams.get('title' || '');
-    
-    // console.log(films);
-    // console.log(filmTitle)
 
     useEffect(() => {
         if(!filmTitle) return;
@@ -51,7 +47,7 @@ const Movies = () => {
     return (
         <>
             <SeaechForm handleFormSubmit={handleFormSubmit} />
-            {films.length > 0 && <MoviesList films={films} location={location}/>}
+            {films.length > 0 && <MoviesList films={films}/>}
             {error && <h2>{error.message}</h2>}
             <Suspense fallback={<Loader/>}>
                 <Outlet/>
